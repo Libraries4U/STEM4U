@@ -1,6 +1,6 @@
 #include <Core/Core.h>
 #include <Functions4U/Functions4U.h>
-#include <plugin/Eigen/Eigen.h>
+#include <Eigen/Eigen.h>
 #include "Permutations.h"
 
 namespace Upp {

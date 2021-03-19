@@ -50,8 +50,8 @@ void CleanCondition(const Range &x, const Range &y, Range &rretx, Range &rrety,
 	rrety = pick(rety);
 }
 
-template <class Range>
-typename Range::value_type GetSampleRate(const Range &x, int numDecimals) {
+template <class Range>	// Gets the most probable sample rate, or the average if the most probable probability is lower than rate
+typename Range::value_type GetSampleRate(const Range &x, int numDecimals, double rate) {
 	using Scalar = typename Range::value_type;
 	
 	int n = int(x.size());
@@ -78,7 +78,14 @@ typename Range::value_type GetSampleRate(const Range &x, int numDecimals) {
 			idmx = i;
 		}
 	}
-	return delta[idmx];
+	if (num[idmx]/double(n-1) > rate)
+		return delta[idmx];
+	else {
+		Scalar avg = 0;
+		for (int i = 1; i < n; ++i) 
+			avg += (x[i]-x[i-1]);
+		return avg/(n-1);
+	}
 }
 
 template <class Range>

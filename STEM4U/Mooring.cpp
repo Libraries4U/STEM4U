@@ -1,5 +1,5 @@
 #include <Core/Core.h>
-#include <plugin/Eigen/Eigen.h>
+#include <Eigen/Eigen.h>
 #include "Sundials.h"
 #include "Mooring.h"
 
@@ -196,7 +196,7 @@ MooringStatus CatenaryGetLen(double xonfloor, double xanchorvessel, double zanch
 		residuals[1] = xanchorvessel - xcatanchor - xcatvessel - xonfloor;
 		return true;
 	}, consdata);		
-	double B = udata[0];
+	//double B = udata[0];
 	moorlen = udata[1];
 	
 	return Catenary(moorlen, xanchorvessel, zanchor, zvessel, xonfloor);
